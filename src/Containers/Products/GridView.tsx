@@ -48,7 +48,7 @@ const GridView: React.FC<Props> = (props: Props) => {
         return (
           <Col flex='1 1 25%' className='col-card' key={`card-${index}`}>
             {isSale ? (
-              <Badge.Ribbon className='card-ribbon' color='red' text={'hot sale'}>
+              <Badge.Ribbon className='card-ribbon' color='purple' text={'hot sale'}>
                 {getCard(item)}
               </Badge.Ribbon>
             ) : (
