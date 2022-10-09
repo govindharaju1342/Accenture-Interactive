@@ -5,7 +5,7 @@
  * @returns
  */
 const getProductList = async () => {
-  console.log("products", products);
+  console.log('products', products);
   return products;
 };
  
