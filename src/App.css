@@ -41,3 +41,11 @@
 .product-img { 
   max-height: 481px;
 }
+.no-data {
+  height: 100px;
+  line-height: 50px;
+  font-size: 16px;
+  font-weight: bold;
+  color: red;
+  text-align: center;
+}

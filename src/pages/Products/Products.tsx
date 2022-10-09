@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { AudioOutlined } from '@ant-design/icons'
 import { Input, PageHeader, Divider, Row, Col, Card, Spin, Button, Image, Badge } from 'antd'
 import { getProductList } from '../../services'
 import { ProductDataType } from '../../DTO'
@@ -36,7 +35,7 @@ const Products: React.FC = () => {
   }
 
   const getCard = (item: ProductDataType) => {
-    // Todo: The productImage is not public URL
+    // Todo: The productImage is not a public URL
     const { productName = '', type = '', price = 0, index = 0 } = item
     return (
       <Card
@@ -68,23 +67,35 @@ const Products: React.FC = () => {
 
   const getCardList = () => {
     const filtersData = getFilterListData()
-    return filtersData.map((item: ProductDataType, index: number) => {
-      const { isSale = false } = item
-      return (
-        <Col flex='1 1 25%' className='col-card' key={`card-${index}`}>
-          {isSale ? (
-            <Badge.Ribbon className='card-ribbon' color='red' text={'hot sale'}>
-              {getCard(item)}
-            </Badge.Ribbon>
-          ) : (
-            getCard(item)
-          )}
-        </Col>
-      )
-    })
+    return filtersData.length === 0 ? (
+      <Col flex='1 1 100%'>
+        <div className='no-data'>No Product Found</div>
+      </Col>
+    ) : (
+      filtersData.map((item: ProductDataType, index: number) => {
+        const { isSale = false } = item
+        return (
+          <Col flex='1 1 25%' className='col-card' key={`card-${index}`}>
+            {isSale ? (
+              <Badge.Ribbon className='card-ribbon' color='red' text={'hot sale'}>
+                {getCard(item)}
+              </Badge.Ribbon>
+            ) : (
+              getCard(item)
+            )}
+          </Col>
+        )
+      })
+    )
   }
 
-  return (
+  return loader ? (
+    <Card style={{ paddingLeft: 0, paddingRight: 0 }}>
+      <div style={{ textAlign: 'center' }}>
+        <Spin />
+      </div>
+    </Card>
+  ) : (
     <div className='site-layout-content layout-padding'>
       <PageHeader
         title='Products'
