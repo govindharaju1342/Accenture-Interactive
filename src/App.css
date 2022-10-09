@@ -24,3 +24,19 @@
   white-space: -o-pre-wrap;   /* Opera 7 */    
   word-wrap: break-word;      /* IE */
 }
+.product-card {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  margin: 10px;
+}
+.card-ribbon.ant-ribbon.ant-ribbon-placement-end {
+  right: 0;
+  top: 5px;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+.col-card {
+  min-width: 200px;
+}
+.product-img { 
+  max-height: 481px;
+}
