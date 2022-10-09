@@ -1,5 +1,7 @@
 {
   "name": "accenture-interactive",
+  "description": "Assignment for create a commerce product listing page",
+  "author": "Govindharaju[govindharaju.k@gmail.com]",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
