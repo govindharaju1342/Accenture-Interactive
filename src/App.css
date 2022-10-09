@@ -36,6 +36,7 @@
 }
 .col-card {
   min-width: 200px;
+  max-width: 350px;
 }
 .product-img { 
   max-height: 481px;

@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { PageHeader, Divider, Row, Col, Card, Spin, Button, Image, Badge } from 'antd'
+import { AudioOutlined } from '@ant-design/icons'
+import { Input, PageHeader, Divider, Row, Col, Card, Spin, Button, Image, Badge } from 'antd'
 import { getProductList } from '../../services'
 import { ProductDataType } from '../../DTO'
+import { get } from '../../utils/helpers'
+
 const { Meta } = Card
+const { Search } = Input
 const Products: React.FC = () => {
   const [loader, setLoader] = useState<boolean>(true)
   const [productList, setProductList] = useState<ProductDataType[]>([])
+  const [searchKey, setSearchKey] = useState<string>('')
+  const [filterData, setFilterData] = useState({} as any)
 
   useEffect(() => {
     const getData = async () => {
@@ -18,6 +24,16 @@ const Products: React.FC = () => {
       getData()
     }
   }, [loader])
+
+  const getFilterListData = () => {
+    let searchResult = productList
+    if (searchKey) {
+      searchResult = searchResult.filter((plan: any) =>
+        get(plan, 'productName', '').toLowerCase().match(searchKey.toLowerCase()),
+      )
+    }
+    return searchResult
+  }
 
   const getCard = (item: ProductDataType) => {
     // Todo: The productImage is not public URL
@@ -37,7 +53,9 @@ const Products: React.FC = () => {
           />
         }
         actions={[
-          <Button type="link" block key={`view-more-${index}`}>Buy Now</Button>
+          <Button type='link' block key={`view-more-${index}`}>
+            Buy Now
+          </Button>,
         ]}
       >
         <Meta
@@ -48,8 +66,9 @@ const Products: React.FC = () => {
     )
   }
 
-  const getCardList = () =>
-    productList.map((item: ProductDataType, index: number) => {
+  const getCardList = () => {
+    const filtersData = getFilterListData()
+    return filtersData.map((item: ProductDataType, index: number) => {
       const { isSale = false } = item
       return (
         <Col flex='1 1 25%' className='col-card' key={`card-${index}`}>
@@ -63,10 +82,25 @@ const Products: React.FC = () => {
         </Col>
       )
     })
+  }
 
   return (
     <div className='site-layout-content layout-padding'>
-      <PageHeader ghost={false} title='Products'></PageHeader>
+      <PageHeader
+        title='Products'
+        extra={
+          productList.length > 0 && [
+            <Search
+              key='search-3'
+              placeholder='Search By Name'
+              allowClear
+              width={500}
+              enterButton
+              onSearch={(value: string) => setSearchKey(value)}
+            />,
+          ]
+        }
+      ></PageHeader>
       <Divider />
       <Row wrap={true}>{getCardList()}</Row>
     </div>
