@@ -1,24 +1,19 @@
 import React from 'react'
+import { Layout } from 'antd'
+const { Header, Footer, Content } = Layout
 import './App.css'
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <img src={'/logo.png'} className='App-logo' alt='logo' />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout className='layout'>
+      <Header>
+        <div className='logo'>
+          <img src='/logo.png' alt='logo' />
+        </div>
+      </Header>
+      <Content className='content'>content</Content>
+      <Footer className='footer'>©{2022} Created by Accenture</Footer>
+    </Layout>
   )
 }
 
