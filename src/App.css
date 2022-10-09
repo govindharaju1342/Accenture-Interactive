@@ -1,10 +1,4 @@
 @import '~antd/dist/antd.css';
-
-body {
-  font-family: 'Roboto', sans-serif;
-  font-size: 13px;
-  line-height: 20px;
-}
 .ant-layout-header {
   padding: 0 15px;
   background: #FFFFFF;
@@ -22,4 +16,11 @@ body {
 }
 .footer {
   text-align: center;
+}
+.wordwrap { 
+  white-space: pre-wrap;      /* CSS3 */   
+  white-space: -moz-pre-wrap; /* Firefox */    
+  white-space: -pre-wrap;     /* Opera <7 */   
+  white-space: -o-pre-wrap;   /* Opera 7 */    
+  word-wrap: break-word;      /* IE */
 }

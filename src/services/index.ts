@@ -8,16 +8,16 @@ const axiosInstance = axios.create({
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
-    Accept: 'application/json',
-    'authorization': localStorage.getItem('auth') || ''
+    Accept: 'application/json'
   },
 })
 
 export const getProductList = async () => { 
   try {
-    const planRequestRequest = await axiosInstance.get('products')
-    return get(planRequestRequest, 'data.data.values', '')
+    const productRequestRequest = await axiosInstance.get('products')
+    console.log('productRequestRequest', productRequestRequest);
+    return get(productRequestRequest, 'data', [])
   } catch (error) {
-    console.error('plan list - Error', error)
+    console.error('product list - Error', error)
   }
 }
