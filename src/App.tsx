@@ -9,7 +9,7 @@ const App: React.FC = () => {
     <Layout className='layout'>
       <Header>
         <div className='logo'>
-          <img src='/logo.png' width="130" height="auto" alt='logo' />
+          <img src='/logo.png' width='130' height='auto' alt='logo' />
         </div>
       </Header>
       <Content className='content'>

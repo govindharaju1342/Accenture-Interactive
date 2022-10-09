@@ -1,9 +1,9 @@
 @import '~antd/dist/antd.css';
 .ant-layout-header {
   padding: 0 15px;
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-} 
+}
 .logo img {
   width: 130px;
   height: auto;
@@ -12,17 +12,17 @@
   margin: 15px;
   border-radius: 4px;
   padding: 15px;
-  background: #FFFFFF;
+  background: #ffffff;
 }
 .footer {
   text-align: center;
 }
-.wordwrap { 
-  white-space: pre-wrap;      /* CSS3 */   
-  white-space: -moz-pre-wrap; /* Firefox */    
-  white-space: -pre-wrap;     /* Opera <7 */   
-  white-space: -o-pre-wrap;   /* Opera 7 */    
-  word-wrap: break-word;      /* IE */
+.wordwrap {
+  white-space: pre-wrap; /* CSS3 */
+  white-space: -moz-pre-wrap; /* Firefox */
+  white-space: -pre-wrap; /* Opera <7 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  word-wrap: break-word; /* IE */
 }
 .product-card {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -38,7 +38,7 @@
   min-width: 200px;
   max-width: 350px;
 }
-.product-img { 
+.product-img {
   max-height: 481px;
 }
 .no-data {
@@ -48,4 +48,15 @@
   font-weight: bold;
   color: red;
   text-align: center;
+}
+.expected-amount {
+  font-style: 18px;
+  font-weight: bolder;
+  color: #000000;
+}
+.load-btn {
+  text-align: center;
+  margin-top: 12px;
+  height: 32px;
+  line-height: 32px;
 }

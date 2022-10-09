@@ -1,25 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import {
-  Input,
-  PageHeader,
-  Divider,
-  Row,
-  Col,
-  Card,
-  Spin,
-  Button,
-  Image,
-  Badge,
-  Tooltip,
-} from 'antd'
-import { FilterOutlined } from '@ant-design/icons'
+import { Input, PageHeader, Divider, Card, Spin, Button, Tooltip } from 'antd'
+import { AppstoreOutlined, BarsOutlined, FilterOutlined } from '@ant-design/icons'
 import type { CheckboxValueType } from 'antd/es/checkbox/Group'
 import Filters from '../../components/Filters'
+import GridView from '../../Containers/Products/GridView'
+import ListView from '../../Containers/Products/ListView'
 import { getProductList } from '../../services'
 import { ProductDataType } from '../../DTO'
 import { get } from '../../utils/helpers'
-
-const { Meta } = Card
 const { Search } = Input
 
 const Products: React.FC = () => {
@@ -28,6 +16,7 @@ const Products: React.FC = () => {
   const [searchKey, setSearchKey] = useState<string>('')
   const [filterData, setFilterData] = useState({} as any)
   const [openFilter, setOpenFilter] = useState<boolean>(false) // Open the filters
+  const [showListLayout, setShowListLayout] = useState<boolean>(false) // Change the layout
 
   useEffect(() => {
     const getData = async () => {
@@ -49,44 +38,14 @@ const Products: React.FC = () => {
         get(item, 'productName', '').toLowerCase().match(searchKey.toLowerCase()),
       )
     }
-    console.log('type', type)
     if (!!type && type.length > 0) {
       searchResult = searchResult.filter((item: any) => !!type.includes(get(item, 'type', '')))
     }
     return searchResult
   }
 
-  const getCard = (item: ProductDataType) => {
-    // Todo: The productImage is not a public URL
-    const { productName = '', type = '', price = 0, index = 0 } = item
-    return (
-      <Card
-        hoverable
-        bordered={true}
-        className='product-card'
-        cover={
-          <Image
-            height={400}
-            alt={`${productName}-${type}`}
-            className='product-img'
-            fallback='products/no-image.png'
-            src={`products/${type.toLowerCase()}.jpeg`}
-          />
-        }
-        actions={[
-          <Button type='link' block key={`view-more-${index}`}>
-            Buy Now
-          </Button>,
-        ]}
-      >
-        <Meta
-          title={<div className='label-link card-title wordwrap'>{productName}</div>}
-          description={`${price}`}
-        />
-      </Card>
-    )
-  }
-
+  const getListIcons = () => (showListLayout ? <BarsOutlined /> : <AppstoreOutlined />)
+  const handleLayout = () => setShowListLayout(!showListLayout)
   const onClose = () => setOpenFilter(false)
   const onFilterChange = (type: CheckboxValueType) => {
     setFilterData({
@@ -105,27 +64,20 @@ const Products: React.FC = () => {
     />
   )
 
-  const getCardList = () => {
+  const getLayout = (filtersData: ProductDataType[]) => {
+    return showListLayout ? (
+      <ListView filtersData={filtersData} />
+    ) : (
+      <GridView filtersData={filtersData} />
+    )
+  }
+
+  const getProductsList = () => {
     const filtersData = getFilterListData()
     return filtersData.length === 0 ? (
-      <Col flex='1 1 100%'>
-        <div className='no-data'>No Product Found</div>
-      </Col>
+      <div className='no-data'>No Product Found</div>
     ) : (
-      filtersData.map((item: ProductDataType, index: number) => {
-        const { isSale = false } = item
-        return (
-          <Col flex='1 1 25%' className='col-card' key={`card-${index}`}>
-            {isSale ? (
-              <Badge.Ribbon className='card-ribbon' color='red' text={'hot sale'}>
-                {getCard(item)}
-              </Badge.Ribbon>
-            ) : (
-              getCard(item)
-            )}
-          </Col>
-        )
-      })
+      getLayout(filtersData)
     )
   }
 
@@ -142,7 +94,7 @@ const Products: React.FC = () => {
         extra={
           productList.length > 0 && [
             <Search
-              key='search-3'
+              key='search-1'
               placeholder='Search By Name'
               allowClear
               width={500}
@@ -152,12 +104,19 @@ const Products: React.FC = () => {
             <Tooltip key='filter-2' title='Filters' placement='bottom'>
               <Button icon={<FilterOutlined />} onClick={() => setOpenFilter(!openFilter)}></Button>
             </Tooltip>,
+            <Tooltip
+              key='view-1'
+              placement='bottom'
+              title={showListLayout ? 'List View' : 'Card View'}
+            >
+              <Button onClick={handleLayout}>{getListIcons()}</Button>
+            </Tooltip>,
           ]
         }
       ></PageHeader>
       <Divider />
       {productList.length > 0 && getFilters()}
-      <Row wrap={true}>{getCardList()}</Row>
+      {getProductsList()}
     </div>
   )
 }
