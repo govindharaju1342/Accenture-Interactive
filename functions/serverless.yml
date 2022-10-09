@@ -1,0 +1,30 @@
+service: accenture-node-api
+useDotenv: true
+variablesResolutionMode: 20210326
+plugins:
+  - serverless-offline
+  - serverless-plugin-typescript
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: accenture # Control the environment of application
+  region: ap-southeast-2
+  apiGateway:
+    minimumCompressionSize: 1024
+  environment:
+    NODE_ENV: dev
+    AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+functions:
+  services:
+    handler: src/index.handler
+    events:
+      - http:
+          path: /
+          method: ANY
+          cors: true
+      - http:
+          path: /{proxy+}
+          method: ANY
+          cors: true
+    maximumRetryAttempts: 0
+    maximumEventAge: 7200
