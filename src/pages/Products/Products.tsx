@@ -1,16 +1,33 @@
 import React, { useEffect, useState } from 'react'
-import { Input, PageHeader, Divider, Row, Col, Card, Spin, Button, Image, Badge } from 'antd'
+import {
+  Input,
+  PageHeader,
+  Divider,
+  Row,
+  Col,
+  Card,
+  Spin,
+  Button,
+  Image,
+  Badge,
+  Tooltip,
+} from 'antd'
+import { FilterOutlined } from '@ant-design/icons'
+import type { CheckboxValueType } from 'antd/es/checkbox/Group'
+import Filters from '../../components/Filters'
 import { getProductList } from '../../services'
 import { ProductDataType } from '../../DTO'
 import { get } from '../../utils/helpers'
 
 const { Meta } = Card
 const { Search } = Input
+
 const Products: React.FC = () => {
   const [loader, setLoader] = useState<boolean>(true)
   const [productList, setProductList] = useState<ProductDataType[]>([])
   const [searchKey, setSearchKey] = useState<string>('')
   const [filterData, setFilterData] = useState({} as any)
+  const [openFilter, setOpenFilter] = useState<boolean>(false) // Open the filters
 
   useEffect(() => {
     const getData = async () => {
@@ -25,11 +42,16 @@ const Products: React.FC = () => {
   }, [loader])
 
   const getFilterListData = () => {
+    const { type } = filterData
     let searchResult = productList
     if (searchKey) {
-      searchResult = searchResult.filter((plan: any) =>
-        get(plan, 'productName', '').toLowerCase().match(searchKey.toLowerCase()),
+      searchResult = searchResult.filter((item: any) =>
+        get(item, 'productName', '').toLowerCase().match(searchKey.toLowerCase()),
       )
+    }
+    console.log('type', type)
+    if (!!type && type.length > 0) {
+      searchResult = searchResult.filter((item: any) => !!type.includes(get(item, 'type', '')))
     }
     return searchResult
   }
@@ -64,6 +86,24 @@ const Products: React.FC = () => {
       </Card>
     )
   }
+
+  const onClose = () => setOpenFilter(false)
+  const onFilterChange = (type: CheckboxValueType) => {
+    setFilterData({
+      type,
+    })
+  }
+  const getFilters = () => (
+    <Filters
+      onClose={onClose}
+      listData={productList}
+      openFilter={openFilter}
+      onFilterChange={(type: any) => {
+        onFilterChange(type)
+        onClose()
+      }}
+    />
+  )
 
   const getCardList = () => {
     const filtersData = getFilterListData()
@@ -109,10 +149,14 @@ const Products: React.FC = () => {
               enterButton
               onSearch={(value: string) => setSearchKey(value)}
             />,
+            <Tooltip key='filter-2' title='Filters' placement='bottom'>
+              <Button icon={<FilterOutlined />} onClick={() => setOpenFilter(!openFilter)}></Button>
+            </Tooltip>,
           ]
         }
       ></PageHeader>
       <Divider />
+      {productList.length > 0 && getFilters()}
       <Row wrap={true}>{getCardList()}</Row>
     </div>
   )
