@@ -4,11 +4,8 @@ Node JS with serverless application
 Following tech stack were used
 - aws-lambda
 - aws-serverless-express
-- axios
 - Typescript
 - cors
-- dotenv
-- moment
 - morgan
 - serverless-http  
 
@@ -17,6 +14,11 @@ Following tech stack were used
 - run `yarn`
 - run offline `sls offline --httpPort 3001`
 - run production `sls deploy --<aws-profile>`
+
+# Offline URL
+    http://localhost:3001/accenture/products
+# Online URL
+    https://oqpqxravi1.execute-api.ap-southeast-2.amazonaws.com/accenture/products
 
 ## Screenshots
 ![Alt text](sls-offline.png "Optional Title")

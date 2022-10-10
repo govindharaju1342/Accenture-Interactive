@@ -102,14 +102,20 @@ const Products: React.FC = () => {
               onSearch={(value: string) => setSearchKey(value)}
             />,
             <Tooltip key='filter-2' title='Filters' placement='bottom'>
-              <Button icon={<FilterOutlined />} onClick={() => setOpenFilter(!openFilter)}></Button>
+              <Button
+                name='filter'
+                icon={<FilterOutlined />}
+                onClick={() => setOpenFilter(!openFilter)}
+              ></Button>
             </Tooltip>,
             <Tooltip
               key='view-1'
               placement='bottom'
               title={showListLayout ? 'List View' : 'Card View'}
             >
-              <Button onClick={handleLayout}>{getListIcons()}</Button>
+              <Button name='layout' onClick={handleLayout}>
+                {getListIcons()}
+              </Button>
             </Tooltip>,
           ]
         }

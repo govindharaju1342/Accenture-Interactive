@@ -1,5 +1,8 @@
 # Accenture Assignment
 Build a product listing page with React JS
+
+# URL 
+https://main.d3bnt6kasn87j4.amplifyapp.com
 ## Technologies:
 Following tech stack were used
 - HTML
