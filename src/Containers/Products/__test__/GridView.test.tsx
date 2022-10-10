@@ -18,7 +18,6 @@ describe('Should renders the GridView', () => {
   const wrapper = shallow(<GridView {...initProps} />)
 
   it('should render my GridView', () => {
-    console.log('wrapper', wrapper)
     expect(wrapper.find('Row').length).toEqual(1)
   })
 })

@@ -10,7 +10,6 @@ const GridView: React.FC<Props> = (props: Props) => {
 
   const getCard = (item: ProductDataType) => {
     const { productName = '', type = '', price = 0, index = 0 } = item
-    console.log('img', `${imgURL}${type.toLowerCase()}.jpeg`)
     return (
       <Card
         hoverable

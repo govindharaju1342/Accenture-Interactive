@@ -22,7 +22,6 @@ const Products: React.FC = () => {
     const getData = async () => {
       const productData = await getProductList()
       setProductList(productData)
-      console.log('productData', productData)
       setLoader(false)
     }
     if (loader) {

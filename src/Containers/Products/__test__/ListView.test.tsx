@@ -17,7 +17,6 @@ configure({ adapter: new Adapter() })
 describe('Should renders the ListView', () => {
   const wrapper = shallow(<ListView {...initProps} />)
   it('should render my ListView', () => {
-    console.log('wrapper', wrapper)
     expect(wrapper.find('List').length).toEqual(1)
   })
 })
