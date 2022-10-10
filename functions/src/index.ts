@@ -10,11 +10,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use((req, res, next) => {
-  res.header('Content-Type', 'application/json');
+  res.header('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', '*');
   res.header('Access-Control-Allow-Methods', '*');
-  res.header('Accept', '*/*');
+  res.header('Accept', '*');
   next();
 });
 

@@ -5,11 +5,7 @@ const baseUrl = process.env.REACT_APP_BASEURL
 const axiosInstance = axios.create({
   baseURL: baseUrl,
   headers: {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': '*',
-    'Access-Control-Allow-Methods': '*',
-    Accept: 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
   },
 })
 

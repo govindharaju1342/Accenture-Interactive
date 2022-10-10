@@ -21,8 +21,10 @@ functions:
       - http:
           path: /
           method: get
+          cors: true
       - http:
           path: /products
           method: get
+          cors: true
     maximumRetryAttempts: 0
     maximumEventAge: 7200
