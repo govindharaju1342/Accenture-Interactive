@@ -1,46 +1,42 @@
-# Getting Started with Create React App
+# Accenture Assignment
+Build a product listing page with React JS
+## Technologies:
+Following tech stack were used
+- HTML
+- CSS
+- Javascript
+- Typescript
+- antd Design
+- axios
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## ENV
+.env file has been committed for assignment purpose only. Do not use it for production env.
+- REACT_APP_BASEURL="http://localhost:3001/accenture/"
 
-## Available Scripts
+## API Info
+- Ensure to start the backend api support before this application
+## Setup
+- download or clone the repository
+- run `yarn`
+- run `yarn start`
 
-In the project directory, you can run:
+## Lint Check
+- run `yarn lint`
 
-### `yarn start`
+## Format 
+- run `yarn format`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Screenshots
+![Alt text](public/card-view.png "Card View")
+![Alt text](public/list-view.png "List View")
+![Alt text](public/details.png "Details")
+![Alt text](public/filters.png "Filters")
+![Alt text](public/search.png "Search")
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Credits
+List of contriubutors:
+- [Govindharaju](govindharaju.k@gmail.com) 
 
-### `yarn test`
+## License
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+MIT license @ [author](author.com)
