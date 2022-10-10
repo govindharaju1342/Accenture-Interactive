@@ -2,13 +2,15 @@ import React from 'react'
 import { Button, Badge, Image, Row, Col, Card } from 'antd'
 import { ProductDataType } from '../../DTO'
 const { Meta } = Card
+// Todo: The productImage is not a public URL
+const imgURL = process.env.REACT_APP_IMG_URL
 
 const GridView: React.FC<Props> = (props: Props) => {
   const { filtersData } = props
 
   const getCard = (item: ProductDataType) => {
-    // Todo: The productImage is not a public URL
     const { productName = '', type = '', price = 0, index = 0 } = item
+    console.log('img', `${imgURL}${type.toLowerCase()}.jpeg`)
     return (
       <Card
         hoverable
@@ -20,7 +22,7 @@ const GridView: React.FC<Props> = (props: Props) => {
             alt={`${productName}-${type}`}
             className='product-img'
             fallback='products/no-image.png'
-            src={`products/${type.toLowerCase()}.jpeg`}
+            src={`${imgURL}${type.toLowerCase()}.jpeg`}
           />
         }
         actions={[

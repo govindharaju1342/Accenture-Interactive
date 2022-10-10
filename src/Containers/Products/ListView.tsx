@@ -3,6 +3,8 @@ import { Tooltip, Button, List, Skeleton, Image } from 'antd'
 import { ShoppingCartOutlined } from '@ant-design/icons'
 import { ProductDataType } from '../../DTO'
 import { get } from '../../utils/helpers'
+// Todo: The productImage is not a public URL
+const imgURL = process.env.REACT_APP_IMG_URL
 
 const ListView: React.FC<Props> = (props: Props) => {
   const { filtersData } = props
@@ -39,7 +41,7 @@ const ListView: React.FC<Props> = (props: Props) => {
                     alt={`${get(item, 'productName', 'productName')}-${get(item, 'type', 'type')}`}
                     className='product-img'
                     fallback='products/no-image.png'
-                    src={`products/${get(item, 'type', 'type').toLowerCase()}.jpeg`}
+                    src={`${imgURL}${get(item, 'type', 'type').toLowerCase()}.jpeg`}
                   />
                 }
                 title={get(item, 'productName', '')}
