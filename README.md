@@ -15,6 +15,7 @@ Following tech stack were used
 ## ENV
 .env file has been committed for assignment purpose only. Do not use it for production env.
 - REACT_APP_BASEURL="http://localhost:3001/accenture/"
+- REACT_APP_BASEURL="https://oqpqxravi1.execute-api.ap-southeast-2.amazonaws.com/accenture/"
 
 ## API Info
 - Ensure to start the backend api support before this application
