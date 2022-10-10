@@ -32,7 +32,6 @@ Following tech stack were used
 ## Screenshots
 ![Alt text](public/card-view.png "Card View")
 ![Alt text](public/list-view.png "List View")
-![Alt text](public/details.png "Details")
 ![Alt text](public/filters.png "Filters")
 ![Alt text](public/search.png "Search")
 
