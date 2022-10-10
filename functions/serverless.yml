@@ -20,11 +20,9 @@ functions:
     events:
       - http:
           path: /
-          method: ANY
-          cors: true
+          method: get
       - http:
-          path: /{proxy+}
-          method: ANY
-          cors: true
+          path: /products
+          method: get
     maximumRetryAttempts: 0
     maximumEventAge: 7200
